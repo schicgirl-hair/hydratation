@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin HydraCheck | Schicgirl</title>
+<meta name="author" content="Schicgirl">
+<meta name="copyright" content="Schicgirl">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fff8f1;--warm:#f5e5d5;--rose:#d9a39c;--brown:#3e261c;--brown-md:#6b3e2e;
+  --gold:#b98232;--gold-lt:#d4a55e;--muted:#927060;--white:#fff;--danger:#8a3a33;--success:#3a6b4c;
+  --shadow:0 24px 80px rgba(62,38,28,.15);--shadow-s:0 8px 28px rgba(62,38,28,.08);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{min-height:100%}
+body{
+  min-height:100%;font-family:var(--sans);color:var(--brown);
+  background:radial-gradient(ellipse 70% 50% at 7% 0%,#f4c9c1 0%,transparent 55%),
+             radial-gradient(ellipse 60% 50% at 100% 100%,#efd3a1 0%,transparent 52%),
+             linear-gradient(160deg,#fff8f1 0%,#f7eadf 100%);
+}
+.shell{width:min(1180px,94vw);margin:0 auto;padding:28px 0 50px}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.mark{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--rose),var(--gold));display:grid;place-items:center;color:white;font-family:var(--serif);font-size:29px;font-weight:700;box-shadow:0 10px 30px rgba(185,130,50,.28)}
+.brand small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.brand strong{display:block;font-family:var(--serif);font-size:30px;font-weight:500;line-height:1}
+.card{background:rgba(255,255,255,.84);border:1px solid rgba(185,130,50,.18);border-radius:30px;box-shadow:var(--shadow);backdrop-filter:blur(18px);padding:28px}
+.hidden{display:none!important}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.05}
+h1{font-size:clamp(32px,5vw,52px);margin-bottom:8px}
+h2{font-size:30px}
+.sub{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:18px}
+label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--brown-md);margin-bottom:7px}
+input,select,textarea{width:100%;border:1.5px solid rgba(185,130,50,.25);background:white;border-radius:14px;min-height:44px;padding:11px 14px;font-family:var(--sans);font-size:14px;color:var(--brown);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(185,130,50,.1)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:22px 0}
+.stat{background:white;border:1px solid rgba(185,130,50,.15);border-radius:20px;padding:18px;box-shadow:var(--shadow-s)}
+.stat b{display:block;font-family:var(--serif);font-size:36px;color:var(--gold);line-height:1}
+.stat span{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.search{flex:1;min-width:220px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 17px;border-radius:999px;border:none;font-family:var(--sans);font-size:13px;font-weight:800;cursor:pointer;transition:.18s;text-decoration:none}
+.btn-primary{background:var(--brown);color:white}.btn-primary:hover{background:var(--brown-md);transform:translateY(-1px)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-lt));color:white}
+.btn-outline{background:transparent;border:1.5px solid rgba(185,130,50,.32);color:var(--brown-md)}
+.btn-danger{background:var(--danger);color:white}
+.table-wrap{overflow:auto;background:white;border-radius:22px;border:1px solid rgba(185,130,50,.14);box-shadow:var(--shadow-s)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:980px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid rgba(185,130,50,.1);vertical-align:top}
+th{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:10px;background:#fff8f1;white-space:nowrap}
+td small{color:var(--muted);line-height:1.5}
+.badge{display:inline-flex;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;background:#fff2df;color:var(--gold);border:1px solid rgba(185,130,50,.22);white-space:nowrap}
+.modal{position:fixed;inset:0;background:rgba(62,38,28,.38);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.open{display:flex}
+.modal-card{width:min(740px,96vw);max-height:88vh;overflow:auto;background:rgba(255,255,255,.96);border:1px solid rgba(185,130,50,.18);border-radius:28px;box-shadow:var(--shadow);padding:24px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.detail{background:#fffaf4;border:1px solid rgba(185,130,50,.14);border-radius:16px;padding:12px}
+.detail span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:4px}
+.detail b{font-size:13px}
+.footer{text-align:center;margin-top:26px;color:var(--muted);font-size:12px;line-height:1.7}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.card{padding:20px}.detail-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.shell{width:100%;padding:14px 10px 34px}.grid{grid-template-columns:1fr}.toolbar{flex-direction:column;align-items:stretch}.btn{width:100%}.brand strong{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="brand">
+    <div class="mark">S</div>
+    <div><small>Schicgirl™ Admin</small><strong>HydraCheck™ Leads</strong></div>
+  </div>
+
+  <section id="login" class="card">
+    <p class="eyebrow">Accès privé</p>
+    <h1>Admin Hydratation</h1>
+    <p class="sub">Cet espace affiche seulement les clientes qui ont utilisé l’application HydraCheck™. Il est séparé de l’admin consultation.</p>
+    <label>Mot de passe admin</label>
+    <input id="password" type="password" placeholder="Mot de passe">
+    <div class="toolbar"><button class="btn btn-primary" id="loginBtn">Entrer →</button></div>
+    <p id="loginError" style="color:var(--danger);font-size:13px;display:none;">Mot de passe incorrect.</p>
+  </section>
+
+  <section id="dashboard" class="hidden">
+    <div class="card">
+      <p class="eyebrow">Tableau de bord Hydratation</p>
+      <h1>Diagnostics HydraCheck™</h1>
+      <p class="sub">Suivi des diagnostics gratuits : profil, blocage hydratation, porosité, épaisseur, fréquence et recommandation.</p>
+
+      <div class="grid">
+        <div class="stat"><b id="total">0</b><span>Total diagnostics</span></div>
+        <div class="stat"><b id="dryCount">0</b><span>Sécheresse forte</span></div>
+        <div class="stat"><b id="lowPorosity">0</b><span>Faible porosité</span></div>
+        <div class="stat"><b id="topNeed">—</b><span>Besoin fréquent</span></div>
+      </div>
+
+      <div class="toolbar">
+        <input class="search" id="search" placeholder="Rechercher nom, pays, problème, profil...">
+        <select id="filter">
+          <option value="">Tous les profils</option>
+          <option value="Eau insuffisante">Eau insuffisante</option>
+          <option value="Rétention faible">Rétention faible</option>
+          <option value="Surcharge">Surcharge</option>
+          <option value="Routine adaptée">Routine adaptée</option>
+        </select>
+        <button class="btn btn-outline" id="refresh">Rafraîchir</button>
+        <button class="btn btn-gold" id="exportCsv">Exporter CSV</button>
+        <button class="btn btn-danger" id="clearData">Effacer</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Cliente</th><th>Contact</th><th>Pays</th><th>Problème</th><th>Porosité</th><th>Profil</th><th>Score</th><th>Détails</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;">
+      <div><p class="eyebrow">Détail cliente</p><h2 id="modalTitle">Diagnostic</h2></div>
+      <button class="btn btn-outline" id="closeModal">Fermer</button>
+    </div>
+    <div id="detailBody" class="detail-grid"></div>
+  </div>
+</div>
+
+<div class="footer">© 2026 Schicgirl™. Admin privé — Application Hydratation.</div>
+
+<script>
+const ADMIN_PASSWORD = "Nanabinta@6";
+const STORAGE_KEY = "schicgirl_hydration_leads";
+let data = [];
+
+const $ = id => document.getElementById(id);
+
+$("loginBtn").onclick = () => {
+  if($("password").value !== ADMIN_PASSWORD){ $("loginError").style.display="block"; return; }
+  localStorage.setItem("schic_hydration_admin_logged","true");
+  showDashboard();
+};
+$("password").addEventListener("keydown",e=>{ if(e.key==="Enter") $("loginBtn").click(); });
+
+function showDashboard(){
+  $("login").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+  loadData();
+}
+
+function loadData(){
+  data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  renderStats();
+  renderTable();
+}
+
+function renderStats(){
+  $("total").textContent = data.length;
+  $("dryCount").textContent = data.filter(x => String(x.problem||x.mainProblem||"").toLowerCase().includes("sec") || String(x.profile||"").toLowerCase().includes("sec")).length;
+  $("lowPorosity").textContent = data.filter(x => String(x.porosity||"").toLowerCase().includes("low") || String(x.porosity||"").toLowerCase().includes("faible")).length;
+  const freq = {};
+  data.forEach(x => {
+    const k = x.profile || x.recommendation || x.need || "Non défini";
+    freq[k] = (freq[k] || 0) + 1;
+  });
+  const top = Object.entries(freq).sort((a,b)=>b[1]-a[1])[0];
+  $("topNeed").textContent = top ? top[0].split(" ").slice(0,2).join(" ") : "—";
+}
+
+function renderTable(){
+  const q = $("search").value.toLowerCase().trim();
+  const f = $("filter").value;
+  let list = data.filter(x => {
+    const blob = JSON.stringify(x).toLowerCase();
+    return (!q || blob.includes(q)) && (!f || blob.includes(f.toLowerCase()));
+  }).reverse();
+
+  $("rows").innerHTML = list.length ? list.map((x,i)=>`
+    <tr>
+      <td>${formatDate(x.date || x.createdAt)}</td>
+      <td><strong>${esc(x.name || "—")}</strong></td>
+      <td>${esc(x.contact || "—")}</td>
+      <td>${esc(x.country || "—")}</td>
+      <td>${esc(x.problem || x.mainProblem || "—")}</td>
+      <td>${esc(x.porosity || "—")}</td>
+      <td><span class="badge">${esc(x.profile || x.recommendation || "Hydratation")}</span></td>
+      <td><strong>${esc(x.score || "—")}</strong></td>
+      <td><button class="btn btn-outline" onclick="openDetail(${data.indexOf(x)})">Voir</button></td>
+    </tr>`).join("") : `<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:28px;">Aucun diagnostic pour le moment.</td></tr>`;
+}
+
+function openDetail(idx){
+  const x = data[idx];
+  $("modalTitle").textContent = x.name ? `Diagnostic de ${x.name}` : "Diagnostic";
+  const fields = Object.entries(x).filter(([k]) => !["step"].includes(k));
+  $("detailBody").innerHTML = fields.map(([k,v]) => `
+    <div class="detail"><span>${esc(k)}</span><b>${esc(Array.isArray(v)?v.join(", "):v)}</b></div>
+  `).join("");
+  $("modal").classList.add("open");
+}
+
+$("closeModal").onclick = () => $("modal").classList.remove("open");
+$("modal").addEventListener("click",e=>{ if(e.target===$("modal")) $("modal").classList.remove("open"); });
+$("search").addEventListener("input", renderTable);
+$("filter").addEventListener("change", renderTable);
+$("refresh").onclick = loadData;
+
+$("exportCsv").onclick = () => {
+  if(!data.length){ alert("Aucune donnée à exporter."); return; }
+  const headers = [...new Set(data.flatMap(x => Object.keys(x)))];
+  const csv = [headers.join(","), ...data.map(x => headers.map(h => `"${String(x[h] ?? "").replaceAll('"','""')}"`).join(","))].join("\n");
+  download(csv, `schicgirl-hydration-leads-${new Date().toISOString().slice(0,10)}.csv`, "text/csv;charset=utf-8");
+};
+
+$("clearData").onclick = () => {
+  if(confirm("Effacer tous les diagnostics Hydratation sauvegardés dans ce navigateur ?")){
+    localStorage.removeItem(STORAGE_KEY);
+    loadData();
+  }
+};
+
+function download(content, filename, type){
+  const blob = new Blob([content], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+function formatDate(d){ try{ return d ? new Date(d).toLocaleDateString("fr-FR",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}) : "—"; }catch(e){ return "—"; } }
+function esc(v){ return String(v ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+
+if(localStorage.getItem("schic_hydration_admin_logged")==="true") showDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>HydraCheck™ | Diagnostic Hydratation Cheveux Crépus | Schicgirl</title>
+  <meta name="description" content="Teste ton niveau d’hydratation capillaire et découvre pourquoi tes cheveux crépus restent secs malgré les soins." />
+  <meta name="author" content="Schicgirl" />
+  <meta name="creator" content="Schicgirl" />
+  <meta name="publisher" content="Schicgirl" />
+  <meta name="copyright" content="© 2026 Schicgirl. Tous droits réservés." />
+  <meta property="og:title" content="HydraCheck™ par Schicgirl" />
+  <meta property="og:description" content="Un diagnostic gratuit inspiré du guide Hydratation Cheveux Crépus pour comprendre ce qui bloque l’hydratation de tes cheveux." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root{
+      --cream:#fdf6ee; --warm:#f5e9d8; --blush:#f2d5cf; --rose:#e4b4af;
+      --brown:#3e261c; --brown-md:#6b3e2e; --gold:#b07b38; --gold-lt:#d4a55e;
+      --muted:#9a7060; --white:#fff; --danger:#8a3a33; --success:#3a6b4c;
+      --shadow-s:0 4px 24px rgba(62,38,28,.08); --shadow-l:0 24px 80px rgba(62,38,28,.18);
+      --radius:20px; --radius-lg:28px; --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+    }
+    html{height:100%;-webkit-text-size-adjust:100%;}
+    body{min-height:100%;font-family:var(--sans);color:var(--brown);background:radial-gradient(ellipse 70% 55% at 8% 0%,#f2ccc7 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 92% 100%,#edd9b0 0%,transparent 50%),linear-gradient(160deg,#fdf6ee,#f7ede0);}
+    .app{width:min(1040px,96vw);min-height:100dvh;margin:0 auto;padding:14px 0 env(safe-area-inset-bottom,0);display:grid;grid-template-rows:auto 1fr auto;gap:10px;}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.74);backdrop-filter:blur(16px);border:1px solid rgba(176,123,56,.2);border-radius:var(--radius-lg);padding:12px 16px;box-shadow:var(--shadow-s);}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;}
+    .mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--rose),var(--gold));display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:25px;font-weight:600;box-shadow:0 8px 20px rgba(176,123,56,.28);flex:0 0 auto;}
+    .brand small{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+    .brand h1{font-family:var(--serif);font-weight:400;font-size:clamp(21px,3vw,34px);line-height:1.02;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pill{border:1px solid rgba(176,123,56,.28);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;color:var(--brown-md);white-space:nowrap;}
+    .panel{display:grid;grid-template-columns:.92fr 1.08fr;gap:12px;min-height:0;}
+    .hero,.chat-panel{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(176,123,56,.18);border-radius:var(--radius-lg);box-shadow:var(--shadow-l);overflow:hidden;}
+    .hero{padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;position:relative;}
+    .hero::after{content:"";position:absolute;right:-80px;bottom:-90px;width:240px;height:240px;border-radius:50%;border:1px solid rgba(176,123,56,.18);background:radial-gradient(circle,rgba(228,180,175,.25),transparent 62%);}
+    .eyebrow{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+    .hero h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,58px);line-height:.96;margin-bottom:14px;}
+    .hero p{font-size:14px;line-height:1.75;color:var(--muted);max-width:540px;}
+    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1;}
+    .mini{background:#fff;border:1px solid rgba(176,123,56,.14);border-radius:18px;padding:14px;box-shadow:var(--shadow-s);}
+    .mini strong{font-family:var(--serif);font-size:23px;color:var(--gold);display:block;line-height:1;}
+    .mini span{font-size:11.5px;color:var(--muted);line-height:1.4;display:block;margin-top:5px;}
+    .ownership{font-size:10.5px;line-height:1.55;color:var(--muted);position:relative;z-index:1;}
+    .chat-panel{display:flex;flex-direction:column;min-height:620px;max-height:calc(100dvh - 120px);}
+    .progress-track{height:4px;background:rgba(176,123,56,.1);flex:0 0 auto;}
+    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--rose),var(--gold));transition:width .45s cubic-bezier(.4,0,.2,1);}
+    .chatbox{flex:1 1 auto;min-height:0;overflow-y:auto;padding:18px 18px 10px;scroll-behavior:smooth;}
+    .chatbox::-webkit-scrollbar{width:4px}.chatbox::-webkit-scrollbar-thumb{background:rgba(176,123,56,.25);border-radius:4px}
+    .msg{max-width:91%;margin-bottom:11px;border-radius:18px;padding:12px 15px;font-size:13.5px;line-height:1.58;white-space:pre-line;animation:fadeUp .25s cubic-bezier(.34,1.2,.64,1) both;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+    .bot{background:#fff;border:1px solid rgba(228,180,175,.4);border-bottom-left-radius:5px;}
+    .user{background:var(--brown);color:#fff;margin-left:auto;border-bottom-right-radius:5px;}
+    .result{max-width:100%;background:linear-gradient(145deg,#fffaf3,#fff7ee);border:1px solid rgba(176,123,56,.28);}
+    .quick{flex:0 0 auto;display:flex;flex-wrap:wrap;gap:7px;padding:9px 14px 7px;background:rgba(255,255,255,.62);border-top:1px solid rgba(228,180,175,.2);max-height:150px;overflow-y:auto;}
+    .quick:empty{padding:0;border-top:none;max-height:0;}
+    button{font-family:var(--sans)}
+    .qbtn{border:1.5px solid rgba(176,123,56,.32);background:#fff;color:var(--brown-md);border-radius:999px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .17s;}
+    .qbtn:hover{background:var(--warm);border-color:var(--gold);transform:translateY(-1px)}
+    .form{flex:0 0 auto;display:flex;gap:8px;padding:11px 12px 13px;border-top:1px solid rgba(228,180,175,.28);background:rgba(253,246,238,.95);}
+    .form input{flex:1;height:44px;border-radius:999px;border:1.5px solid rgba(176,123,56,.28);padding:0 18px;font-size:16px;outline:none;color:var(--brown);}
+    .form input:focus{border-color:var(--gold)}
+    .send{height:44px;border:0;border-radius:999px;background:var(--brown);color:#fff;padding:0 18px;font-size:13px;font-weight:700;cursor:pointer;}
+    .typing{display:inline-flex;gap:5px;background:#fff;border:1px solid rgba(228,180,175,.4);border-radius:18px;border-bottom-left-radius:5px;padding:12px 15px;margin-bottom:11px;}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--rose);animation:bounce 1.2s ease-in-out infinite}.dot:nth-child(2){animation-delay:.18s}.dot:nth-child(3){animation-delay:.36s}@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.6}30%{transform:translateY(-6px);opacity:1}}
+    .r-label{font-size:9.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+    .divider{height:1px;background:rgba(176,123,56,.14);margin:14px 0;}
+    .score-card{display:flex;align-items:center;gap:13px;background:rgba(176,123,56,.09);border-radius:16px;padding:12px 16px;margin-bottom:12px;}
+    .score{font-family:var(--serif);font-size:48px;font-weight:600;color:var(--gold);line-height:1;}.score-text{font-size:12.5px;color:var(--muted);line-height:1.45}.score-text strong{color:var(--brown)}
+    .method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:8px}.method{background:#fff;border:1px solid rgba(176,123,56,.16);border-radius:14px;padding:12px;font-size:12.5px;line-height:1.55}.method b{color:var(--gold)}
+    .offer{background:linear-gradient(145deg,#fffaf3,#fff2e5);border:1px solid rgba(176,123,56,.33);border-radius:var(--radius);padding:18px;margin-top:12px}.offer h3{font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:8px}.offer p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:9px}.offer-btns{display:grid;gap:9px;margin-top:12px}.offer a{display:block;text-align:center;text-decoration:none;border-radius:999px;padding:13px 16px;font-size:13px;font-weight:800}.primary{background:var(--brown);color:#fff}.gold{background:linear-gradient(135deg,var(--gold),var(--gold-lt));color:#fff}
+    .footer{text-align:center;font-size:10.5px;color:var(--muted);padding:2px 8px 6px;line-height:1.5;}
+    @media(max-width:900px){.panel{grid-template-columns:1fr}.hero{display:none}.chat-panel{min-height:calc(100dvh - 115px);max-height:calc(100dvh - 115px)}.topbar{border-radius:18px}.brand h1{font-size:22px}.pill{display:none}.app{width:100%;padding:6px 6px env(safe-area-inset-bottom,0);gap:6px}.method-grid{grid-template-columns:1fr}.msg{max-width:95%;font-size:13px}.chatbox{padding:13px 11px 7px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><div class="mark">S</div><div><small>Schicgirl™ Hair Intelligence</small><h1>HydraCheck™</h1></div></div>
+    
+    </header>
+
+    <section class="panel">
+      <aside class="hero">
+        <div>
+          <p class="eyebrow">Inspiré du guide hydratation</p>
+          <h2>Pourquoi tes cheveux restent secs ?</h2>
+          <p>Cette mini-application analyse ton hydratation, ta rétention, ta porosité, l’épaisseur de tes cheveux, ta routine et les erreurs possibles. Le but : comprendre si tes cheveux manquent d’eau, de scellage, de nettoyage, de légèreté ou d’une routine mieux adaptée.</p>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><strong>01</strong><span>Identifier le vrai blocage d’hydratation.</span></div>
+          <div class="mini"><strong>02</strong><span>Recevoir une méthode simple : eau, soin, scellage, observation.</span></div>
+          <div class="mini"><strong>03</strong><span>Ajuster selon porosité, épaisseur et climat.</span></div>
+          <div class="mini"><strong>04</strong><span>Aller plus loin avec le guide ou une routine personnalisée.</span></div>
+        </div>
+      </aside>
+
+      <main class="chat-panel">
+        <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+        <div class="chatbox" id="chatbox"></div>
+        <div class="quick" id="quick"></div>
+        <form class="form" id="form" autocomplete="off"><input id="input" placeholder="Écris ta réponse ici…" /><button class="send">Envoyer</button></form>
+      </main>
+    </section>
+
+    <footer class="footer">© 2026 Schicgirl™ — HydraCheck™. Tous droits réservés. Reproduction, copie ou revente interdites.</footer>
+  </div>
+
+<script>
+const CONFIG={
+  guideLink:"https://selar.com/hydratation-cheveux-crepus",
+  routineLink:"https://selar.com/70t3ur414k",
+  brand:"Schicgirl™",
+  adminStorageKey:"schicgirl_hydration_leads"
+};
+const state={step:"",name:"",contact:"",country:"",climate:"",dryness:"",hydrationBasis:"",oilOnly:"",seal:"",heavyProducts:"",buildup:"",porosity:"",thickness:"",frequency:"",overHydration:"",ends:"",nightProtection:"",routine:"",emergency:"",goal:"",score:0,profile:"",priority:""};
+const steps=["name","contact","country","climate","dryness","hydrationBasis","oilOnly","seal","heavyProducts","buildup","porosity","thickness","frequency","overHydration","ends","nightProtection","routine","emergency","goal","done"];
+const chat=document.getElementById('chatbox'), quick=document.getElementById('quick'), form=document.getElementById('form'), input=document.getElementById('input'), progress=document.getElementById('progress');
+const norm=v=>String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+function setStep(s){state.step=s; const i=steps.indexOf(s); progress.style.width=(i<0?0:Math.round(i/(steps.length-1)*100))+'%';}
+function setReplies(arr){quick.innerHTML=''; (arr||[]).forEach(r=>{const b=document.createElement('button'); b.type='button'; b.className='qbtn'; b.textContent=r.label; b.onclick=()=>handle(r.value,r.label); quick.appendChild(b);}); setTimeout(()=>chat.scrollTop=chat.scrollHeight,50);}
+function typing(){const d=document.createElement('div');d.className='typing';d.id='typing';d.innerHTML='<span class="dot"></span><span class="dot"></span><span class="dot"></span>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;}
+function rmTyping(){const d=document.getElementById('typing'); if(d)d.remove();}
+function msg(text,cls='bot',html=false,delay=0){return new Promise(res=>setTimeout(()=>{rmTyping();const d=document.createElement('div');d.className='msg '+cls;if(html)d.innerHTML=text;else d.textContent=text;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;res(d);},delay));}
+async function bot(text,delay=520,html=false){typing();return msg(text,'bot',html,delay);}
+function saveLead(){const lead={...state,date:new Date().toISOString()}; const list=JSON.parse(localStorage.getItem(CONFIG.adminStorageKey)||'[]'); list.push(lead); localStorage.setItem(CONFIG.adminStorageKey,JSON.stringify(list));}
+function start(){setStep('name'); setReplies([]); chat.innerHTML=''; msg('💧 Bienvenue dans HydraCheck™ de Schicgirl.','bot'); setTimeout(()=>bot('Je vais t’aider à comprendre pourquoi tes cheveux crépus restent secs : manque d’eau, mauvaise rétention, produits trop lourds, accumulation, porosité, pointes ou routine mal adaptée.\n\nComment souhaites-tu que je t’appelle ?'),280);}
+async function handle(value,label=value){const raw=String(value).trim(), v=norm(raw); if(!raw)return; msg(label,'user'); setReplies([]); input.value='';
+ switch(state.step){
+  case 'name': state.name=raw; setStep('contact'); await bot(`Ravie de te guider, ${state.name} 💛\n\nTu peux laisser ton email ou WhatsApp pour sauvegarder ce diagnostic, ou continuer sans contact.`); setReplies([{label:'Continuer sans contact',value:'skip'}]); break;
+  case 'contact': state.contact=v==='skip'?'':raw; setStep('country'); await bot('Dans quel pays vis-tu ? Le climat influence beaucoup la perte d’hydratation.'); setReplies([{label:'Côte d’Ivoire',value:'cote_ivoire'},{label:'France',value:'france'},{label:'États-Unis',value:'usa'},{label:'Canada',value:'canada'},{label:'Autre',value:'autre'}]); break;
+  case 'country': state.country=raw; setStep('climate'); await bot('Ton climat actuel ressemble plutôt à quoi ?'); setReplies([{label:'Chaud et sec',value:'hot_dry'},{label:'Chaud et humide',value:'humid'},{label:'Froid / hiver',value:'cold'},{label:'Variable',value:'variable'}]); break;
+  case 'climate': state.climate=v; setStep('dryness'); await bot('Après un soin ou une hydratation, combien de temps tes cheveux restent-ils doux ?'); setReplies([{label:'Moins de 24h',value:'under24'},{label:'1 à 2 jours',value:'1_2'},{label:'3 à 4 jours',value:'3_4'},{label:'Presque toute la semaine',value:'week'}]); break;
+  case 'dryness': state.dryness=v; setStep('hydrationBasis'); await bot('Quand tu “hydrates”, quelle est la première chose que tu mets sur tes cheveux ?'); setReplies([{label:'Eau ou spray aqueux',value:'water'},{label:'Leave-in / lait hydratant',value:'leavein'},{label:'Huile ou beurre directement',value:'oil'},{label:'Crème riche sans eau avant',value:'cream'}]); break;
+  case 'hydrationBasis': state.hydrationBasis=v; setStep('oilOnly'); await bot('Utilises-tu souvent les huiles en pensant qu’elles hydratent seules ?'); setReplies([{label:'Oui, souvent',value:'yes'},{label:'Parfois',value:'sometimes'},{label:'Non, je sais que l’eau vient d’abord',value:'no'}]); break;
+  case 'oilOnly': state.oilOnly=v; setStep('seal'); await bot('Après l’eau ou le leave-in, est-ce que tu scelles l’hydratation ?'); setReplies([{label:'Oui, avec une huile légère',value:'light'},{label:'Oui, avec crème/beurre',value:'rich'},{label:'Parfois seulement',value:'sometimes'},{label:'Non, jamais',value:'no'}]); break;
+  case 'seal': state.seal=v; setStep('heavyProducts'); await bot('Tes produits donnent parfois un effet lourd, gras ou collant ?'); setReplies([{label:'Oui, souvent',value:'often'},{label:'Parfois',value:'sometimes'},{label:'Non, ils restent légers',value:'no'}]); break;
+  case 'heavyProducts': state.heavyProducts=v; setStep('buildup'); await bot('Même après tes soins, as-tu l’impression que tes cheveux sont chargés mais toujours secs ?'); setReplies([{label:'Oui, lourds mais secs',value:'heavy_dry'},{label:'Ils sont ternes et difficiles à hydrater',value:'dull'},{label:'Non, pas vraiment',value:'no'}]); break;
+  case 'buildup': state.buildup=v; setStep('porosity'); await bot('Quelle est ta porosité ou ton observation avec l’eau ?'); setReplies([{label:'Faible : l’eau reste en surface',value:'low'},{label:'Forte : l’eau entre vite mais ressort vite',value:'high'},{label:'Normale',value:'normal'},{label:'Je ne sais pas',value:'unknown'}]); break;
+  case 'porosity': state.porosity=v; setStep('thickness'); await bot('Tes mèches individuelles sont plutôt fines, moyennes ou épaisses ?'); setReplies([{label:'Fines : elles se chargent vite',value:'fine'},{label:'Moyennes',value:'medium'},{label:'Épaisses : elles supportent plus de matière',value:'thick'},{label:'Je ne sais pas',value:'unknown'}]); break;
+  case 'thickness': state.thickness=v; setStep('frequency'); await bot('À quelle fréquence hydrates-tu réellement tes cheveux ?'); setReplies([{label:'Tous les jours',value:'daily'},{label:'2 à 3 fois/semaine',value:'2_3'},{label:'1 fois/semaine',value:'weekly'},{label:'Rarement / quand j’y pense',value:'rare'}]); break;
+  case 'frequency': state.frequency=v; setStep('overHydration'); await bot('Tes cheveux deviennent-ils parfois mous, sans tenue ou trop souples après trop d’eau/soins ?'); setReplies([{label:'Oui',value:'yes'},{label:'Parfois',value:'sometimes'},{label:'Non',value:'no'}]); break;
+  case 'overHydration': state.overHydration=v; setStep('ends'); await bot('Comment sont tes pointes ?'); setReplies([{label:'Très sèches et rêches',value:'dry'},{label:'Fourchues / transparentes',value:'split'},{label:'Correctes',value:'ok'},{label:'Je ne vérifie jamais',value:'unknown'}]); break;
+  case 'ends': state.ends=v; setStep('nightProtection'); await bot('Protèges-tu tes cheveux la nuit ?'); setReplies([{label:'Oui, bonnet/taie satin',value:'satin'},{label:'Parfois',value:'sometimes'},{label:'Non',value:'no'}]); break;
+  case 'nightProtection': state.nightProtection=v; setStep('routine'); await bot('Ta routine est-elle simple et régulière ?'); setReplies([{label:'Oui, claire et stable',value:'stable'},{label:'Je change souvent',value:'unstable'},{label:'Je n’ai pas vraiment de routine',value:'none'}]); break;
+  case 'routine': state.routine=v; setStep('emergency'); await bot('Actuellement, tes cheveux sont-ils en situation d’urgence : très secs, cassants, difficiles à coiffer ?'); setReplies([{label:'Oui, urgence sécheresse',value:'yes'},{label:'Un peu',value:'medium'},{label:'Non',value:'no'}]); break;
+  case 'emergency': state.emergency=v; setStep('goal'); await bot('Quel est ton objectif principal maintenant ?'); setReplies([{label:'Garder l’hydratation plus longtemps',value:'retention'},{label:'Comprendre ma porosité',value:'porosity'},{label:'Stopper la casse',value:'breakage'},{label:'Créer une routine simple',value:'routine'}]); break;
+  case 'goal': state.goal=v; buildDiagnosis(); break;
+  case 'done': if(v==='guide') window.open(CONFIG.guideLink,'_blank'); if(v==='routine') window.open(CONFIG.routineLink,'_blank'); if(v==='restart') start(); break;
+ }}
+function analyze(){let score=10, causes=[], actions=[];
+ if(['under24','1_2'].includes(state.dryness)){score-=2;causes.push('Tes cheveux perdent vite leur douceur : il y a probablement un problème de rétention ou de scellage.');}
+ if(['oil','cream'].includes(state.hydrationBasis)){score-=2;causes.push('Tu commences peut-être par du gras ou une crème trop riche alors que l’hydratation commence par l’eau.');actions.push('Commence toujours par eau, spray aqueux ou leave-in très aqueux.');}
+ if(['yes','sometimes'].includes(state.oilOnly)){score-=1;causes.push('Les huiles protègent et scellent, mais elles n’hydratent pas seules.');}
+ if(['no','sometimes'].includes(state.seal)){score-=1;causes.push('L’eau peut s’évaporer vite si elle n’est pas retenue par un scellage adapté.');actions.push('Après l’eau/leave-in, ajoute une fine couche d’huile ou de crème selon tes cheveux.');}
+ if(['often','sometimes'].includes(state.heavyProducts)){score-=1;causes.push('Tes produits semblent parfois trop lourds : cela peut étouffer la fibre et donner une fausse impression de soin.');}
+ if(['heavy_dry','dull'].includes(state.buildup)){score-=2;causes.push('Possible accumulation : cheveux chargés, ternes, lourds mais secs. L’eau pénètre moins bien.');actions.push('Fais un nettoyage doux ou un masque clarifiant doux avant shampoing, puis hydrate correctement.');}
+ if(state.porosity==='low'){score-=1;causes.push('Porosité faible : l’eau entre difficilement. Les textures lourdes peuvent rester en surface.');actions.push('Utilise des textures légères, applique sur cheveux bien humides et aide avec chaleur douce.');}
+ if(state.porosity==='high'){score-=1;causes.push('Porosité forte : l’eau entre vite mais ressort vite. La rétention est la priorité.');actions.push('Scelle mieux, protège les pointes et évite de laisser sécher entre les étapes.');}
+ if(state.thickness==='fine' && ['rich','often'].includes(state.seal||state.heavyProducts)){score-=1;causes.push('Mèches fines : elles se chargent vite. Il faut des couches fines et légères.');}
+ if(state.frequency==='rare'){score-=2;causes.push('Hydratation trop rare : les longueurs peuvent devenir rêches et les pointes casser.');}
+ if(state.frequency==='daily' && ['yes','sometimes'].includes(state.overHydration)){score-=1;causes.push('Tu hydrates peut-être trop souvent : cheveux mous, sans tenue = besoin d’espacer et d’observer.');}
+ if(['dry','split','unknown'].includes(state.ends)){score-=1;causes.push('Les pointes demandent plus d’attention : elles sont la partie la plus ancienne et fragile.');actions.push('Hydrate les pointes séparément, scelle-les et protège-les immédiatement.');}
+ if(['no','sometimes'].includes(state.nightProtection)){score-=1;causes.push('Sans satin la nuit, le coton absorbe l’hydratation et augmente les frottements.');actions.push('Bonnet, foulard ou taie satin chaque nuit.');}
+ if(['unstable','none'].includes(state.routine)){score-=1;causes.push('La routine manque de cohérence. Une routine simple mais stable donne plus de résultats qu’une routine compliquée.');}
+ if(state.emergency==='yes'){score-=1;causes.push('Tes cheveux sont en urgence sécheresse : il faut revenir à l’essentiel, pas multiplier les produits.');}
+ score=Math.max(1,score);
+ let profile='Hydratation à équilibrer', priority='observer et ajuster sans surcharger';
+ if(['oil','cream'].includes(state.hydrationBasis)||['yes','sometimes'].includes(state.oilOnly)){profile='Manque d’eau réelle'; priority='remettre l’eau au centre de ta routine';}
+ if(['under24','1_2'].includes(state.dryness)||state.porosity==='high'){profile='Rétention faible'; priority='sceller et protéger pour garder l’eau plus longtemps';}
+ if(['heavy_dry','dull'].includes(state.buildup)||state.heavyProducts==='often'){profile='Accumulation / surcharge'; priority='nettoyer doucement puis alléger les produits';}
+ if(state.porosity==='low'){profile='Porosité faible à débloquer'; priority='faire pénétrer l’hydratation sans étouffer';}
+ if(state.emergency==='yes'){profile='Urgence sécheresse'; priority='nettoyer intelligemment, hydrater, sceller et protéger';}
+ return {score,profile,priority,causes,actions};
+}
+function plan(a){let base=`① Eau ou élément aqueux\nCommence par des cheveux humidifiés, un spray hydratant ou un leave-in très aqueux.\n\n② Soin hydratant/adoucissant\nAjoute un lait, leave-in ou crème légère pour accompagner l’eau.\n\n③ Scellage adapté\nAjoute une fine couche d’huile, crème ou beurre selon ta porosité et ton épaisseur. Le but n’est pas de graisser, mais de retenir.\n\n④ Protection\nLaisse les cheveux tranquilles : vanilles, nattes souples, chignon doux ou coiffure peu manipulée.\n\n⑤ Observation\nRegarde si tes cheveux deviennent doux, lourds, mous, secs vite ou plus cassants. Ajuste selon ces signes.`;
+ if(state.porosity==='low') base+=`\n\n📌 Spécial faible porosité : textures légères, petites quantités, cheveux bien humides et chaleur douce pendant les soins.`;
+ if(state.porosity==='high') base+=`\n\n📌 Spécial forte porosité : ne laisse pas sécher entre les étapes, scelle mieux, insiste sur les pointes et la protection nocturne.`;
+ if(state.thickness==='fine') base+=`\n\n📌 Mèches fines : applique moins de produit, en couches fines. Trop riche = lourd mais pas forcément hydraté.`;
+ if(state.thickness==='thick') base+=`\n\n📌 Mèches épaisses : tu peux utiliser un peu plus de matière, surtout sur longueurs et pointes.`;
+ return base;}
+function emergency(){return `Jour 1 : Évalue l’état réel — sec, chargé, abîmé ou trop mou.\nJour 2 : Si les cheveux sont lourds/ternes, fais un nettoyage doux ou clarifiant léger avant shampoing.\nJour 3 : Fais un vrai soin hydratant sur cheveux bien humidifiés.\nJour 4 : Scelle correctement, surtout les pointes.\nJour 5 : Protège immédiatement avec une coiffure simple et satin la nuit.\nJour 6 : Réduis la surcharge : eau + soin hydratant + scellage + protection.\nJour 7 : Observe : douceur, souplesse, pointes, lourdeur, casse.`;}
+async function buildDiagnosis(){setStep('done'); const a=analyze(); state.score=a.score; state.profile=a.profile; state.priority=a.priority;
+ await bot(`${state.name||'Ma belle'}, ton diagnostic est prêt. Retiens ceci : hydrater ne veut pas dire saturer les cheveux de produits. Hydrater, c’est apporter l’eau, l’aider à rester, puis observer.`);
+ const causes=a.causes.length?a.causes.map(c=>'• '+c).join('\n'):'• Ton profil est plutôt équilibré. Continue à observer et rester régulière.';
+ const actions=a.actions.length?a.actions.map(c=>'• '+c).join('\n'):'• Garde une routine simple : eau, soin hydratant, scellage adapté, protection.';
+ const html=`<div class="r-label">Résultat HydraCheck™</div>
+ <div class="score-card"><div class="score">${a.score}/10</div><div class="score-text">Profil détecté<br><strong>${a.profile}</strong><br>Priorité : ${a.priority}</div></div>
+ <div class="divider"></div><div class="r-label">Causes possibles</div><p>${causes}</p>
+ <div class="divider"></div><div class="r-label">Actions immédiates</div><p>${actions}</p>
+ <div class="divider"></div><div class="r-label">Méthode Schicgirl en 5 étapes</div><p>${plan(a)}</p>
+ <div class="method-grid"><div class="method"><b>Fréquence de départ</b><br>2 à 3 fois/semaine, puis ajuste selon les signes.</div><div class="method"><b>À hydrater plus</b><br>Rêche, pointes qui s’accrochent, casse, douceur qui disparaît vite.</div><div class="method"><b>À espacer</b><br>Cheveux mous, lourds, sans tenue, trop chargés.</div><div class="method"><b>Essentiel</b><br>Eau + soin + scellage + protection, pas 10 produits.</div></div>
+ <div class="divider"></div><div class="r-label">Plan urgence 7 jours</div><p>${emergency()}</p>
+ <div class="offer"><h3>💛 Pour aller plus loin</h3><p>Ce diagnostic gratuit t’indique le blocage principal. Pour apprendre la méthode complète, prends le guide. Pour recevoir une routine faite pour ton profil exact, prends la création de routine personnalisée.</p><div class="offer-btns"><a class="primary" href="${CONFIG.guideLink}" target="_blank" rel="noopener">💧 Guide Hydratation Cheveux Crépus</a><a class="gold" href="${CONFIG.routineLink}" target="_blank" rel="noopener">🌿 Création de routine personnalisée</a></div></div>`;
+ await msg(html,'result',true,250); saveLead(); setReplies([{label:'Voir le guide',value:'guide'},{label:'Routine personnalisée',value:'routine'},{label:'Recommencer',value:'restart'}]);}
+form.addEventListener('submit',e=>{e.preventDefault();handle(input.value);});
+start();
+</script>
+</body>
+</html>
