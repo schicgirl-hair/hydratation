@@ -540,45 +540,87 @@
       }
 
       /* Responsive */
-      @media (max-width: 900px) {
-        .panel {
-          grid-template-columns: 1fr;
-        }
-        .hero {
-          display: none;
-        }
-        .chat-panel {
-          height: auto;
-          min-height: unset;
-          max-height: none;
+     @media(max-width:900px){
 
-          display: flex;
-          flex-direction: column;
+  html,
+  body{
+    height:100%;
+    overflow:hidden;
+  }
 
-          overflow: hidden;
-        }
-        .topbar {
-          border-radius: 18px;
-        }
-        .brand h1 {
-          font-size: 22px;
-        }
-        .app {
-          width: 100%;
-          padding: 6px 6px env(safe-area-inset-bottom, 0);
-          gap: 6px;
-        }
-        .method-grid {
-          grid-template-columns: 1fr;
-        }
-        .msg {
-          max-width: 95%;
-          font-size: 13px;
-        }
-        .chatbox {
-          padding: 13px 11px 7px;
-        }
-      }
+  .app{
+    width:100%;
+    height:100dvh;
+
+    padding:4px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:4px;
+  }
+
+  .panel{
+    flex:1;
+    min-height:0;
+
+    display:flex;
+    flex-direction:column;
+  }
+
+  .hero{
+    display:none;
+  }
+
+  .chat-panel{
+    flex:1;
+
+    min-height:0;
+    height:100%;
+
+    border-radius:18px;
+
+    overflow:hidden;
+  }
+
+  .chatbox{
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:12px 10px 8px;
+  }
+
+  .form{
+    padding:8px;
+  }
+
+  .form input{
+    height:42px;
+  }
+
+  .send{
+    height:42px;
+  }
+
+  .topbar{
+    border-radius:18px;
+  }
+
+  .brand h1{
+    font-size:22px;
+  }
+
+  .method-grid{
+    grid-template-columns:1fr;
+  }
+
+  .msg{
+    max-width:95%;
+    font-size:13px;
+  }
+
+}
     </style>
   </head>
   <body>
