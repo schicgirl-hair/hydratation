@@ -548,8 +548,14 @@
           display: none;
         }
         .chat-panel {
-          min-height: calc(100dvh - 115px);
-          max-height: calc(100dvh - 115px);
+          height: auto;
+          min-height: unset;
+          max-height: none;
+
+          display: flex;
+          flex-direction: column;
+
+          overflow: hidden;
         }
         .topbar {
           border-radius: 18px;
